@@ -13,36 +13,35 @@ public:
         text = t;
     }
 
-    string getText() {
+    string getText() const { 
         return text;
     }
 };
 
 class Validator {
 public:
-
-    bool hasNumber(string s) {
+    bool hasNumber(const string &s) const { 
         for (char c : s) {
             if (isdigit(c)) return true;
         }
         return false;
     }
 
-    bool hasUpper(string s) {
+    bool hasUpper(const string &s) const { 
         for (char c : s) {
             if (isupper(c)) return true;
         }
         return false;
     }
 
-    bool hasLower(string s) {
+    bool hasLower(const string &s) const { 
         for (char c : s) {
             if (islower(c)) return true;
         }
         return false;
     }
 
-    bool hasSymbol(string s) {
+    bool hasSymbol(const string &s) const { 
         string symbols = "!@#$%^&*()-_=+[]{};:'\",.<>?/\\|`~";
         for (char c : s) {
             if (symbols.find(c) != string::npos) return true;
@@ -50,7 +49,7 @@ public:
         return false;
     }
 
-    string checkStrength(string s) {
+    string checkStrength(const string &s) const { 
         int score = 0;
 
         if (s.length() >= 8) score++;
@@ -58,8 +57,7 @@ public:
         if (hasUpper(s)) score++;
         if (hasLower(s)) score++;
         if (hasSymbol(s)) score++;
-
-        // simple scoring rules
+        
         if (score <= 2)
             return "Weak";
         else if (score == 3 || score == 4)
@@ -79,7 +77,8 @@ int main() {
 
     string strength = v.checkStrength(p.getText());
 
-    cout << "Password Strength: " << strength << endl;
+    cout << "Password Strength: " << strength << endl; 
 
     return 0;
 }
+
